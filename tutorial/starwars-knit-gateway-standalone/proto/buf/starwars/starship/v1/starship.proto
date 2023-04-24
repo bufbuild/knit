@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package buf.starwars.starship.v1;
+
+message Starship {
+	string starship_id = 1;
+	string name = 2;
+	string model = 3;
+	string manufacturer = 4;
+	uint64 cost_in_credits = 5;
+	uint64 length = 6;
+	uint64 max_atmosphering_speed = 7;
+	uint64 crew = 8;
+	uint64 passengers = 9;
+	uint64 cargo_capacity = 10;
+	string consumables = 11;
+	float hyperdrive_rating = 12;
+	uint64 mglt = 13;
+	string starship_class = 14;
+	// Relations
+	repeated string pilot_ids = 15;
+	repeated string film_ids = 16;
+}
+
+message StarshipsRequest {
+    repeated string starship_ids = 1;
+    uint32 limit = 2;
+}
+
+message StarshipsResponse {
+    repeated Starship starships = 1;
+}
+
+service StarshipService {
+    rpc GetStarships(StarshipsRequest) returns (StarshipsResponse);
+}

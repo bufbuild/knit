@@ -1,0 +1,12 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/bufbuild/knit/tutorial/starwars-starship-service-go/gen
+plugins:
+  - remote: buf.build/protocolbuffers/plugins/go
+    opt: paths=source_relative
+    out: gen
+  - remote: buf.build/bufbuild/plugins/connect-go
+    opt: paths=source_relative
+    out: gen

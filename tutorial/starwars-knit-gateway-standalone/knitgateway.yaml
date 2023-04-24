@@ -1,0 +1,20 @@
+listen:
+  bind_address: 127.0.0.1
+  port: 8080
+
+backends:
+- route_to: http://127.0.0.1:18000
+  services:
+    - buf.starwars.relation.v1.RelationService
+  descriptors:
+    descriptor_set_file: schema.protoset
+- route_to: http://127.0.0.1:18001
+  services:
+    - buf.starwars.film.v1.FilmService
+  descriptors:
+    descriptor_set_file: schema.protoset
+- route_to: http://127.0.0.1:18002
+  services:
+    - buf.starwars.starship.v1.StarshipService
+  descriptors:
+    descriptor_set_file: schema.protoset

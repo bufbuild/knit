@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package buf.starwars.film.v1;
+
+message Film {
+    string film_id = 1;
+	uint64 episode_number = 2;
+	string title = 3;
+    string opening_text = 4;
+	repeated string directors = 5;
+	repeated string producers = 6;
+    repeated string character_ids = 7;
+    repeated string planet_ids = 8;
+    repeated string starship_ids = 9;
+    repeated string vehicle_ids = 10;
+    repeated string species_ids = 11;
+}
+
+message FilmsRequest {
+    repeated string film_ids = 1;
+    uint32 limit = 2;
+}
+
+message FilmsResponse {
+    repeated Film films = 1;
+}
+
+service FilmService {
+    rpc GetFilms(FilmsRequest) returns (FilmsResponse);
+}

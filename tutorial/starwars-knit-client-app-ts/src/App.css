@@ -1,0 +1,20 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.film {
+  background-color:#f5f5fcaa;
+  border: 1px solid #646cff;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.title {
+  font-size: 1.0em;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
