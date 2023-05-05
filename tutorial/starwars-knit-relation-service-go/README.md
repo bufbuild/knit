@@ -8,7 +8,7 @@ diagram below to see where the Knit relation service fits into the bigger
 picture. 
 
 ```mermaid
-%%{ init: { 'theme': 'base', 'flowchart': { 'curve': 'basis' } } }%%
+%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
 A[Knit Client] --> B[Knit Gateway]
 subgraph r [Knit Relation Service]

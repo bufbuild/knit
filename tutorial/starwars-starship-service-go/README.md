@@ -11,7 +11,7 @@ to see where the starship service fits into the bigger
 picture.
 
 ```mermaid
-%%{ init: { 'theme': 'base', 'flowchart': { 'curve': 'basis' } } }%%
+%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
 A[Knit Client] --> B[Knit Gateway]
 subgraph r [Knit Relation Service]
