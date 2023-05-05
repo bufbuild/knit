@@ -9,6 +9,6 @@ plugins:
     out: gen
     opt: target=ts
   - plugin: knit-ts
-    opt: target=ts
     out: gen
+    opt: target=ts
     strategy: all
