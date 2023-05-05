@@ -23,7 +23,7 @@ component is its own sub-directory and has its own README that shows how
 to run that part of the system:
 
 ```mermaid
-%%{ init: { 'theme': 'base', 'flowchart': { 'curve': 'basis' } } }%%
+%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
 A[Knit Client] --> B[Knit Gateway]
 subgraph r [Knit Relation Service]

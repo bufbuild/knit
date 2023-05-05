@@ -271,7 +271,7 @@ to show how parts of the system could be organized:
 
 #### Everything independent
 ```mermaid
-%%{ init: { 'theme': 'base', 'flowchart': { 'curve': 'basis' } } }%%
+%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
 A[Knit Client] --> B[Knit Gateway]
 subgraph r [Relation Service]
@@ -290,7 +290,7 @@ B --> S
 
 #### Relations embedded in Film service
 ```mermaid
-%%{ init: { 'theme': 'base', 'flowchart': { 'curve': 'basis' } } }%%
+%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
 A[Knit Client] --> B[Knit Gateway]
 subgraph f [Film Service]
@@ -308,7 +308,7 @@ B --> S
 
 #### Relations embedded in Starship service
 ```mermaid
-%%{ init: { 'theme': 'base', 'flowchart': { 'curve': 'basis' } } }%%
+%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
 A[Knit Client] --> B[Knit Gateway]
 subgraph f [Film Service]
@@ -326,7 +326,7 @@ B --> S
 
 #### Relations embedded across services
 ```mermaid
-%%{ init: { 'theme': 'base', 'flowchart': { 'curve': 'basis' } } }%%
+%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
 A[Knit Client] --> B[Knit Gateway]
 subgraph f [Film Service]
@@ -346,7 +346,7 @@ B --> S
 
 #### Everything in one backend monolith
 ```mermaid
-%%{ init: { 'theme': 'base', 'flowchart': { 'curve': 'basis' } } }%%
+%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
 subgraph f [Monolithic Service]
     G{{Knit Gateway}}

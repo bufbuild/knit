@@ -6,7 +6,7 @@ In this tutorial the Knit Client app is implemented in TypeScript using [knit-ts
 [react.js] and [vite]. It calls the Knit Gateway to query for films with starships.
 
 ```mermaid
-%%{ init: { 'theme': 'base', 'flowchart': { 'curve': 'basis' } } }%%
+%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
 A[Knit Client] --> B[Knit Gateway]
 subgraph r [Knit Relation Service]
@@ -212,7 +212,7 @@ client.do({
 ```
 
 ```mermaid
-%%{ init: { 'theme': 'base', 'flowchart': { 'curve': 'basis' } } }%%
+%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
 G --> F
 A[Knit Client] --> G[Knit Gateway]
@@ -250,7 +250,7 @@ client.do({
 ```
 
 ```mermaid
-%%{ init: { 'theme': 'base', 'flowchart': { 'curve': 'basis' } } }%%
+%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
 G --> F & S
 A[Knit Client] --> G[Knit Gateway]
@@ -293,7 +293,7 @@ client.do({
 ```
 
 ```mermaid
-%%{ init: { 'theme': 'base', 'flowchart': { 'curve': 'basis' } } }%%
+%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
 G --> F & R
 R --> S
@@ -344,7 +344,7 @@ client.do({
 ```
 
 ```mermaid
-%%{ init: { 'theme': 'base', 'flowchart': { 'curve': 'basis' } } }%%
+%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
 G --> R
 R --> F & S

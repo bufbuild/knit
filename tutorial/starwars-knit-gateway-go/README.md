@@ -14,7 +14,7 @@ order, and flow required data from responses into subsequent requests until a
 query is fully executed.
 
 ```mermaid
-%%{ init: { 'theme': 'base', 'flowchart': { 'curve': 'basis' } } }%%
+%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
 A[Knit Client] --> B[Knit Gateway]
 subgraph r [Knit Relation Service]
