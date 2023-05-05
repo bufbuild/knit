@@ -3,7 +3,7 @@ import './App.css'
 
 import type { FilmService } from '../gen/buf/starwars/film/v1/film_knit';
 import type { StarshipService } from '../gen/buf/starwars/starship/v1/starship_knit';
-import type { QuoteService } from '../gen/buf/starwars/starship/v1/quote_knit';
+import type { QuoteService } from '../gen/buf/starwars/quote/v1/quote_knit';
 import type {  } from '../gen/buf/starwars/relation/v1/relation_knit';
 import { createClient } from '@bufbuild/knit';
 
