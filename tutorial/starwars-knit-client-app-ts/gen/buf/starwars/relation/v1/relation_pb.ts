@@ -50,9 +50,9 @@ export class GetFilmStarshipsRequest extends Message<GetFilmStarshipsRequest> {
  */
 export class GetFilmStarshipsResponse extends Message<GetFilmStarshipsResponse> {
   /**
-   * @generated from field: repeated buf.starwars.relation.v1.GetFilmStarshipsResponse.Result values = 1;
+   * @generated from field: repeated buf.starwars.relation.v1.GetFilmStarshipsResponse.Value values = 1;
    */
-  values: GetFilmStarshipsResponse_Result[] = [];
+  values: GetFilmStarshipsResponse_Value[] = [];
 
   constructor(data?: PartialMessage<GetFilmStarshipsResponse>) {
     super();
@@ -62,7 +62,7 @@ export class GetFilmStarshipsResponse extends Message<GetFilmStarshipsResponse> 
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.starwars.relation.v1.GetFilmStarshipsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "values", kind: "message", T: GetFilmStarshipsResponse_Result, repeated: true },
+    { no: 1, name: "values", kind: "message", T: GetFilmStarshipsResponse_Value, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetFilmStarshipsResponse {
@@ -83,39 +83,39 @@ export class GetFilmStarshipsResponse extends Message<GetFilmStarshipsResponse> 
 }
 
 /**
- * @generated from message buf.starwars.relation.v1.GetFilmStarshipsResponse.Result
+ * @generated from message buf.starwars.relation.v1.GetFilmStarshipsResponse.Value
  */
-export class GetFilmStarshipsResponse_Result extends Message<GetFilmStarshipsResponse_Result> {
+export class GetFilmStarshipsResponse_Value extends Message<GetFilmStarshipsResponse_Value> {
   /**
    * @generated from field: repeated buf.starwars.starship.v1.Starship starships = 1;
    */
   starships: Starship[] = [];
 
-  constructor(data?: PartialMessage<GetFilmStarshipsResponse_Result>) {
+  constructor(data?: PartialMessage<GetFilmStarshipsResponse_Value>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "buf.starwars.relation.v1.GetFilmStarshipsResponse.Result";
+  static readonly typeName = "buf.starwars.relation.v1.GetFilmStarshipsResponse.Value";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "starships", kind: "message", T: Starship, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetFilmStarshipsResponse_Result {
-    return new GetFilmStarshipsResponse_Result().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetFilmStarshipsResponse_Value {
+    return new GetFilmStarshipsResponse_Value().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetFilmStarshipsResponse_Result {
-    return new GetFilmStarshipsResponse_Result().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetFilmStarshipsResponse_Value {
+    return new GetFilmStarshipsResponse_Value().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetFilmStarshipsResponse_Result {
-    return new GetFilmStarshipsResponse_Result().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetFilmStarshipsResponse_Value {
+    return new GetFilmStarshipsResponse_Value().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GetFilmStarshipsResponse_Result | PlainMessage<GetFilmStarshipsResponse_Result> | undefined, b: GetFilmStarshipsResponse_Result | PlainMessage<GetFilmStarshipsResponse_Result> | undefined): boolean {
-    return proto3.util.equals(GetFilmStarshipsResponse_Result, a, b);
+  static equals(a: GetFilmStarshipsResponse_Value | PlainMessage<GetFilmStarshipsResponse_Value> | undefined, b: GetFilmStarshipsResponse_Value | PlainMessage<GetFilmStarshipsResponse_Value> | undefined): boolean {
+    return proto3.util.equals(GetFilmStarshipsResponse_Value, a, b);
   }
 }
 
