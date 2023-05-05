@@ -2,7 +2,7 @@ version: v1
 managed:
   enabled: true
   go_package_prefix:
-    default: github.com/bufbuild/starwars-api/gen
+    default: github.com/bufbuild/knit/tutorial/starwars-film-service-go/gen
 plugins:
   - remote: buf.build/protocolbuffers/plugins/go
     opt: paths=source_relative

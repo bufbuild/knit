@@ -22,8 +22,8 @@ import (
 	"github.com/bufbuild/connect-go"
 	grpcreflect "github.com/bufbuild/connect-grpcreflect-go"
 	"github.com/bufbuild/knit/tutorial/starwars-data-go/pkg/film"
-	filmv1 "github.com/bufbuild/starwars-api/gen/buf/starwars/film/v1"
-	"github.com/bufbuild/starwars-api/gen/buf/starwars/film/v1/filmv1connect"
+	filmv1 "github.com/bufbuild/knit/tutorial/starwars-film-service-go/gen/buf/starwars/film/v1"
+	"github.com/bufbuild/knit/tutorial/starwars-film-service-go/gen/buf/starwars/film/v1/filmv1connect"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 )
