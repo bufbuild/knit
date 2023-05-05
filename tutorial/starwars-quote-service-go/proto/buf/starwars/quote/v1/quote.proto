@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package buf.starwars.quote.v1;
+
+message Quote {
+    string quote_id = 1;
+    string quote = 2;
+    string person_id = 3;
+    string film_id = 4;
+}
+
+message StreamQuotesRequest {}
+
+message StreamQuotesResponse {
+    Quote quote = 1;
+}
+
+service QuoteService {
+    rpc StreamQuotes(StreamQuotesRequest) returns (stream StreamQuotesResponse) {}
+}

@@ -22,6 +22,7 @@ import (
 	grpcreflect "github.com/bufbuild/connect-grpcreflect-go"
 	"github.com/bufbuild/knit-go"
 	"github.com/bufbuild/knit/tutorial/starwars-knit-gateway-go/gen/buf/starwars/film/v1/filmv1connect"
+	"github.com/bufbuild/knit/tutorial/starwars-knit-gateway-go/gen/buf/starwars/quote/v1/quotev1connect"
 	"github.com/bufbuild/knit/tutorial/starwars-knit-gateway-go/gen/buf/starwars/relation/v1/relationv1connect"
 	"github.com/bufbuild/knit/tutorial/starwars-knit-gateway-go/gen/buf/starwars/starship/v1/starshipv1connect"
 	"golang.org/x/net/http2"
@@ -49,6 +50,11 @@ func main() {
 		log.Fatalf("Failed to parse person URL: %v", err)
 	}
 
+	quoteServiceURL, err := url.Parse("http://127.0.0.1:18003")
+	if err != nil {
+		log.Fatalf("Failed to parse person URL: %v", err)
+	}
+
 	gateway := knit.Gateway{}
 	if err := gateway.AddServiceByName(protoreflect.FullName(relationv1connect.RelationServiceName), knit.WithRoute(relationServiceURL)); err != nil {
 		log.Fatalf("Failed to add service: %v, error: %v", relationv1connect.RelationServiceName, err)
@@ -58,6 +64,9 @@ func main() {
 	}
 	if err := gateway.AddServiceByName(protoreflect.FullName(starshipv1connect.StarshipServiceName), knit.WithRoute(starshipServiceURL)); err != nil {
 		log.Fatalf("Failed to add service: %v, error: %v", starshipv1connect.StarshipServiceName, err)
+	}
+	if err := gateway.AddServiceByName(protoreflect.FullName(quotev1connect.QuoteServiceName), knit.WithRoute(quoteServiceURL)); err != nil {
+		log.Fatalf("Failed to add service: %v, error: %v", quotev1connect.QuoteServiceName, err)
 	}
 
 	mux := http.NewServeMux()

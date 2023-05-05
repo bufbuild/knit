@@ -3,10 +3,11 @@ import './App.css'
 
 import type { FilmService } from '../gen/buf/starwars/film/v1/film_knit';
 import type { StarshipService } from '../gen/buf/starwars/starship/v1/starship_knit';
+import type { QuoteService } from '../gen/buf/starwars/starship/v1/quote_knit';
 import type {  } from '../gen/buf/starwars/relation/v1/relation_knit';
 import { createClient } from '@bufbuild/knit';
 
-type Schema = FilmService & StarshipService;
+type Schema = FilmService & StarshipService & QuoteService;
 
 const client = createClient<Schema>({
   baseUrl: 'http://localhost:5173/knit',
@@ -15,7 +16,7 @@ const client = createClient<Schema>({
 function App(): JSX.Element {
   const [data, setFilms] = useState(new Array<{title: string, models: string[]}>());
 
-  async function callKnit() {
+  async function getFilmStarships() {
     const resp = await client.do({
       "buf.starwars.film.v1.FilmService": {
         getFilms: {
@@ -40,6 +41,24 @@ function App(): JSX.Element {
     setFilms(films);
   }
 
+  async function streamQuotes() {
+    const quoteStream = await client.listen({
+      "buf.starwars.quote.v1.QuoteService": {
+        streamQuotes: {
+          $: { },
+          quote: {
+            quote_id: {},
+            quote: {},
+          },
+        },
+      },
+    });
+
+    for await (const quote of quoteStream) {
+      console.log("Quote: ", quote);
+    }
+  }
+
   return (
     <div className="App">
       <div>
@@ -49,8 +68,11 @@ function App(): JSX.Element {
       </div>
       <h1>Vite + React + Knit</h1>
       <div className="card">
-        <button onClick={callKnit}>
+        <button onClick={getFilmStarships}>
           Get Films & Starships
+        </button>
+        <button onClick={streamQuotes}>
+          Stream Quotes
         </button>
       </div>
       <div>
