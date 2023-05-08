@@ -141,7 +141,7 @@ generation.
 and code generation is required once for schema and not per query.
 
 ## Relations between services
-Relations extends the availble fields in a type without needing to modify
+Relations extend the available fields in a type without needing to modify
 the original proto definition of that type.
 
 Using the `Film` and `Starship` types from the [Tutorial] as an example, a
