@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetFilmStarshipsRequest, GetFilmStarshipsResponse } from "./relation_pb.js";
+import { GetFilmStarshipsRequest, GetFilmStarshipsResponse, GetQuoteFilmRequest, GetQuoteFilmResponse } from "./relation_pb.js";
 import { MethodIdempotency, MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -19,6 +19,16 @@ export const RelationService = {
       name: "GetFilmStarships",
       I: GetFilmStarshipsRequest,
       O: GetFilmStarshipsResponse,
+      kind: MethodKind.Unary,
+    idempotency: MethodIdempotency.NoSideEffects,
+    },
+    /**
+     * @generated from rpc buf.starwars.relation.v1.RelationService.GetQuoteFilm
+     */
+    getQuoteFilm: {
+      name: "GetQuoteFilm",
+      I: GetQuoteFilmRequest,
+      O: GetQuoteFilmResponse,
       kind: MethodKind.Unary,
     idempotency: MethodIdempotency.NoSideEffects,
     },

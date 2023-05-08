@@ -42,13 +42,21 @@ function App(): JSX.Element {
   }
 
   async function streamQuotes() {
-    const quoteStream = await client.listen({
+    const quoteStream = client.listen({
       "buf.starwars.quote.v1.QuoteService": {
         streamQuotes: {
           $: { },
           quote: {
-            quote_id: {},
+            quoteId: {},
             quote: {},
+            film: {
+              $: {},
+              title: {},
+              starships: {
+                $: {},
+                model: {},
+              }
+            }
           },
         },
       },

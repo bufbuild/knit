@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "buf/starwars/film/v1/film.proto";
+import "buf/starwars/quote/v1/quote.proto";
 import "buf/starwars/starship/v1/starship.proto";
 import "buf/knit/v1alpha1/options.proto";
 
@@ -17,9 +18,24 @@ message GetFilmStarshipsResponse {
     }
 }
 
+message GetQuoteFilmRequest {
+    repeated buf.starwars.quote.v1.Quote bases = 1;
+}
+
+message GetQuoteFilmResponse {
+    repeated Value values = 1;
+    message Value {
+        buf.starwars.film.v1.Film film = 1;
+    }
+}
+
 service RelationService {
     rpc GetFilmStarships(GetFilmStarshipsRequest) returns (GetFilmStarshipsResponse) {
         option (buf.knit.v1alpha1.relation).name = "starships";
+        option idempotency_level = NO_SIDE_EFFECTS;
+    }
+    rpc GetQuoteFilm(GetQuoteFilmRequest) returns (GetQuoteFilmResponse) {
+        option (buf.knit.v1alpha1.relation).name = "film";
         option idempotency_level = NO_SIDE_EFFECTS;
     }
 }

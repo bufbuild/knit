@@ -21,6 +21,8 @@ import (
 
 	"github.com/bufbuild/connect-go"
 	grpcreflect "github.com/bufbuild/connect-grpcreflect-go"
+	filmv1 "github.com/bufbuild/knit/tutorial/starwars-knit-relation-service-go/gen/buf/starwars/film/v1"
+	"github.com/bufbuild/knit/tutorial/starwars-knit-relation-service-go/gen/buf/starwars/film/v1/filmv1connect"
 	relationv1 "github.com/bufbuild/knit/tutorial/starwars-knit-relation-service-go/gen/buf/starwars/relation/v1"
 	"github.com/bufbuild/knit/tutorial/starwars-knit-relation-service-go/gen/buf/starwars/relation/v1/relationv1connect"
 	starshipv1 "github.com/bufbuild/knit/tutorial/starwars-knit-relation-service-go/gen/buf/starwars/starship/v1"
@@ -35,6 +37,7 @@ func main() {
 	log.Printf("Knit relation service starting")
 
 	rel := &RelationService{
+		filmClient:     filmv1connect.NewFilmServiceClient(http.DefaultClient, "http://localhost:18001"),
 		starshipClient: starshipv1connect.NewStarshipServiceClient(http.DefaultClient, "http://localhost:18002"),
 	}
 
@@ -62,6 +65,7 @@ func main() {
 }
 
 type RelationService struct {
+	filmClient     filmv1connect.FilmServiceClient
 	starshipClient starshipv1connect.StarshipServiceClient
 }
 
@@ -80,15 +84,44 @@ func (s *RelationService) GetFilmStarships(
 		starships, err := s.starshipClient.GetStarships(ctx, connect.NewRequest(&starshipv1.StarshipsRequest{
 			StarshipIds: film.StarshipIds,
 		}))
-
 		if err != nil {
 			log.Printf("Request to starship service with %v failed: %v", film.StarshipIds, err)
 			return nil, err
-		} else {
-			resp.Values = append(resp.Values, &relationv1.GetFilmStarshipsResponse_Value{
-				Starships: starships.Msg.Starships,
-			})
 		}
+
+		resp.Values = append(resp.Values, &relationv1.GetFilmStarshipsResponse_Value{
+			Starships: starships.Msg.Starships,
+		})
+	}
+
+	return connect.NewResponse(&resp), nil
+}
+
+func (s *RelationService) GetQuoteFilm(
+	ctx context.Context,
+	req *connect.Request[relationv1.GetQuoteFilmRequest],
+) (
+	*connect.Response[relationv1.GetQuoteFilmResponse],
+	error,
+) {
+	resp := relationv1.GetQuoteFilmResponse{}
+
+	for _, quote := range req.Msg.Bases {
+		films, err := s.filmClient.GetFilms(ctx, connect.NewRequest(&filmv1.FilmsRequest{
+			FilmIds: []string{quote.FilmId},
+		}))
+		if err != nil {
+			log.Printf("Request to film service with %v failed: %v", quote.FilmId, err)
+			return nil, err
+		}
+
+		if len(films.Msg.Films) == 0 {
+			log.Printf("Request to film service with %v returned zero films", quote.FilmId)
+			continue
+		}
+		resp.Values = append(resp.Values, &relationv1.GetQuoteFilmResponse_Value{
+			Film: films.Msg.Films[0],
+		})
 	}
 
 	return connect.NewResponse(&resp), nil

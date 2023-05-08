@@ -7,6 +7,7 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 import { Film } from "../../film/v1/film_pb.js";
 import { Starship } from "../../starship/v1/starship_pb.js";
+import { Quote } from "../../quote/v1/quote_pb.js";
 
 /**
  * @generated from message buf.starwars.relation.v1.GetFilmStarshipsRequest
@@ -116,6 +117,117 @@ export class GetFilmStarshipsResponse_Value extends Message<GetFilmStarshipsResp
 
   static equals(a: GetFilmStarshipsResponse_Value | PlainMessage<GetFilmStarshipsResponse_Value> | undefined, b: GetFilmStarshipsResponse_Value | PlainMessage<GetFilmStarshipsResponse_Value> | undefined): boolean {
     return proto3.util.equals(GetFilmStarshipsResponse_Value, a, b);
+  }
+}
+
+/**
+ * @generated from message buf.starwars.relation.v1.GetQuoteFilmRequest
+ */
+export class GetQuoteFilmRequest extends Message<GetQuoteFilmRequest> {
+  /**
+   * @generated from field: repeated buf.starwars.quote.v1.Quote bases = 1;
+   */
+  bases: Quote[] = [];
+
+  constructor(data?: PartialMessage<GetQuoteFilmRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "buf.starwars.relation.v1.GetQuoteFilmRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "bases", kind: "message", T: Quote, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetQuoteFilmRequest {
+    return new GetQuoteFilmRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetQuoteFilmRequest {
+    return new GetQuoteFilmRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetQuoteFilmRequest {
+    return new GetQuoteFilmRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetQuoteFilmRequest | PlainMessage<GetQuoteFilmRequest> | undefined, b: GetQuoteFilmRequest | PlainMessage<GetQuoteFilmRequest> | undefined): boolean {
+    return proto3.util.equals(GetQuoteFilmRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message buf.starwars.relation.v1.GetQuoteFilmResponse
+ */
+export class GetQuoteFilmResponse extends Message<GetQuoteFilmResponse> {
+  /**
+   * @generated from field: repeated buf.starwars.relation.v1.GetQuoteFilmResponse.Value values = 1;
+   */
+  values: GetQuoteFilmResponse_Value[] = [];
+
+  constructor(data?: PartialMessage<GetQuoteFilmResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "buf.starwars.relation.v1.GetQuoteFilmResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "values", kind: "message", T: GetQuoteFilmResponse_Value, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetQuoteFilmResponse {
+    return new GetQuoteFilmResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetQuoteFilmResponse {
+    return new GetQuoteFilmResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetQuoteFilmResponse {
+    return new GetQuoteFilmResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetQuoteFilmResponse | PlainMessage<GetQuoteFilmResponse> | undefined, b: GetQuoteFilmResponse | PlainMessage<GetQuoteFilmResponse> | undefined): boolean {
+    return proto3.util.equals(GetQuoteFilmResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message buf.starwars.relation.v1.GetQuoteFilmResponse.Value
+ */
+export class GetQuoteFilmResponse_Value extends Message<GetQuoteFilmResponse_Value> {
+  /**
+   * @generated from field: buf.starwars.film.v1.Film film = 1;
+   */
+  film?: Film;
+
+  constructor(data?: PartialMessage<GetQuoteFilmResponse_Value>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "buf.starwars.relation.v1.GetQuoteFilmResponse.Value";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "film", kind: "message", T: Film },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetQuoteFilmResponse_Value {
+    return new GetQuoteFilmResponse_Value().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetQuoteFilmResponse_Value {
+    return new GetQuoteFilmResponse_Value().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetQuoteFilmResponse_Value {
+    return new GetQuoteFilmResponse_Value().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetQuoteFilmResponse_Value | PlainMessage<GetQuoteFilmResponse_Value> | undefined, b: GetQuoteFilmResponse_Value | PlainMessage<GetQuoteFilmResponse_Value> | undefined): boolean {
+    return proto3.util.equals(GetQuoteFilmResponse_Value, a, b);
   }
 }
 
