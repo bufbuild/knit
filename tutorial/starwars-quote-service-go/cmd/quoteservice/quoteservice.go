@@ -69,7 +69,7 @@ func (s *QuoteService) StreamQuotes(
 		log.Printf("Sending quote: %v", q.QuoteID)
 		err := stream.Send(resp)
 		if errors.Is(err, &net.OpError{}) {
-			log.Printf("Steaming closed by client")
+			log.Printf("Streaming closed by client")
 			return nil
 		}
 		if err != nil {
