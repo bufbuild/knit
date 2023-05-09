@@ -17,7 +17,7 @@ export type QuoteService = {
 
 export interface Quote {
   quoteId: string;
-  quote: string;
+  text: string;
   personId: string;
   filmId: string;
 };

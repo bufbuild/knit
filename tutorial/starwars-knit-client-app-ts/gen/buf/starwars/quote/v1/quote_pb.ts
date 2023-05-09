@@ -16,9 +16,9 @@ export class Quote extends Message<Quote> {
   quoteId = "";
 
   /**
-   * @generated from field: string quote = 2;
+   * @generated from field: string text = 2;
    */
-  quote = "";
+  text = "";
 
   /**
    * @generated from field: string person_id = 3;
@@ -39,7 +39,7 @@ export class Quote extends Message<Quote> {
   static readonly typeName = "buf.starwars.quote.v1.Quote";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "quote_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "quote", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "person_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "film_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);

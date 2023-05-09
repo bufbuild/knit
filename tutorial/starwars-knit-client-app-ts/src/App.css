@@ -2,7 +2,14 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+}
+
+pre {
+  white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
+  white-space: -pre-wrap; /* Opera */
+  white-space: -o-pre-wrap; /* Opera */
+  white-space: pre-wrap; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
+  word-wrap: break-word; /* IE 5.5+ */
 }
 
 .film {
@@ -17,4 +24,27 @@
   font-size: 1.0em;
   font-weight: bold;
   padding-bottom: 20px;
+}
+
+.instruction {
+  padding-bottom: 20px;
+  border-bottom: 2px solid black;
+}
+
+.controls {
+  padding-top: 20px;
+  border-top: 2px solid black;
+}
+
+.twopanel {
+  display: table;
+}
+
+.panel {
+  display: table-cell;
+}
+
+.quotetext {
+  font-weight: bold;
+  font-style: italic;
 }

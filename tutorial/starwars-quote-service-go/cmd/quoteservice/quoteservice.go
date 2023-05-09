@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"log"
-	"math/rand"
 	"net"
 	"net/http"
 	"time"
@@ -62,11 +61,12 @@ func (s *QuoteService) StreamQuotes(
 		resp := &quotev1.StreamQuotesResponse{
 			Quote: &quotev1.Quote{
 				QuoteId:  q.QuoteID,
-				Quote:    q.Quote,
+				Text:     q.Text,
 				PersonId: q.PersonID,
 				FilmId:   q.FilmID,
 			},
 		}
+		log.Printf("Sending quote: %v", q.QuoteID)
 		err := stream.Send(resp)
 		if errors.Is(err, &net.OpError{}) {
 			log.Printf("Steaming closed by client")
@@ -76,11 +76,7 @@ func (s *QuoteService) StreamQuotes(
 			log.Printf("Streaming response failed: %v", err)
 			return err
 		}
-		pauseWithJitter()
+		// Pause a bit so user can read the quote.
+		time.Sleep(3 * time.Second)
 	}
-}
-
-func pauseWithJitter() {
-	jitter := rand.Int31n(1000)
-	time.Sleep(time.Duration(2000+jitter) * time.Millisecond)
 }

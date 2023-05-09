@@ -4,7 +4,7 @@ package buf.starwars.quote.v1;
 
 message Quote {
     string quote_id = 1;
-    string quote = 2;
+    string text = 2;
     string person_id = 3;
     string film_id = 4;
 }
