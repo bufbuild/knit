@@ -2,13 +2,16 @@ package main
 
 import (
 	"context"
-	"fmt"
+	"errors"
 	"log"
+	"math/rand"
+	"net"
 	"net/http"
 	"time"
 
 	"github.com/bufbuild/connect-go"
 	grpcreflect "github.com/bufbuild/connect-grpcreflect-go"
+	"github.com/bufbuild/knit/tutorial/starwars-data-go/pkg/quote"
 	quotev1 "github.com/bufbuild/knit/tutorial/starwars-quote-service-go/gen/buf/starwars/quote/v1"
 	"github.com/bufbuild/knit/tutorial/starwars-quote-service-go/gen/buf/starwars/quote/v1/quotev1connect"
 	"golang.org/x/net/http2"
@@ -54,18 +57,30 @@ func (s *QuoteService) StreamQuotes(
 	stream *connect.ServerStream[quotev1.StreamQuotesResponse],
 ) error {
 	log.Println("Starting streaming response...")
-	cnt := 0
 	for {
-		time.Sleep(2 * time.Second)
+		q := quote.RandomQuote()
 		resp := &quotev1.StreamQuotesResponse{
 			Quote: &quotev1.Quote{
-				QuoteId: fmt.Sprintf("%d", cnt),
+				QuoteId:  q.QuoteID,
+				Quote:    q.Quote,
+				PersonId: q.PersonID,
+				FilmId:   q.FilmID,
 			},
 		}
 		err := stream.Send(resp)
+		if errors.Is(err, &net.OpError{}) {
+			log.Printf("Steaming closed by client")
+			return nil
+		}
 		if err != nil {
 			log.Printf("Streaming response failed: %v", err)
 			return err
 		}
+		pauseWithJitter()
 	}
+}
+
+func pauseWithJitter() {
+	jitter := rand.Int31n(1000)
+	time.Sleep(time.Duration(2000+jitter) * time.Millisecond)
 }

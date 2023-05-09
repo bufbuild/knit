@@ -36,11 +36,15 @@ const (
 	// RelationServiceGetFilmStarshipsProcedure is the fully-qualified name of the RelationService's
 	// GetFilmStarships RPC.
 	RelationServiceGetFilmStarshipsProcedure = "/buf.starwars.relation.v1.RelationService/GetFilmStarships"
+	// RelationServiceGetQuoteFilmProcedure is the fully-qualified name of the RelationService's
+	// GetQuoteFilm RPC.
+	RelationServiceGetQuoteFilmProcedure = "/buf.starwars.relation.v1.RelationService/GetQuoteFilm"
 )
 
 // RelationServiceClient is a client for the buf.starwars.relation.v1.RelationService service.
 type RelationServiceClient interface {
 	GetFilmStarships(context.Context, *connect_go.Request[v1.GetFilmStarshipsRequest]) (*connect_go.Response[v1.GetFilmStarshipsResponse], error)
+	GetQuoteFilm(context.Context, *connect_go.Request[v1.GetQuoteFilmRequest]) (*connect_go.Response[v1.GetQuoteFilmResponse], error)
 }
 
 // NewRelationServiceClient constructs a client for the buf.starwars.relation.v1.RelationService
@@ -59,12 +63,19 @@ func NewRelationServiceClient(httpClient connect_go.HTTPClient, baseURL string, 
 			connect_go.WithIdempotency(connect_go.IdempotencyNoSideEffects),
 			connect_go.WithClientOptions(opts...),
 		),
+		getQuoteFilm: connect_go.NewClient[v1.GetQuoteFilmRequest, v1.GetQuoteFilmResponse](
+			httpClient,
+			baseURL+RelationServiceGetQuoteFilmProcedure,
+			connect_go.WithIdempotency(connect_go.IdempotencyNoSideEffects),
+			connect_go.WithClientOptions(opts...),
+		),
 	}
 }
 
 // relationServiceClient implements RelationServiceClient.
 type relationServiceClient struct {
 	getFilmStarships *connect_go.Client[v1.GetFilmStarshipsRequest, v1.GetFilmStarshipsResponse]
+	getQuoteFilm     *connect_go.Client[v1.GetQuoteFilmRequest, v1.GetQuoteFilmResponse]
 }
 
 // GetFilmStarships calls buf.starwars.relation.v1.RelationService.GetFilmStarships.
@@ -72,10 +83,16 @@ func (c *relationServiceClient) GetFilmStarships(ctx context.Context, req *conne
 	return c.getFilmStarships.CallUnary(ctx, req)
 }
 
+// GetQuoteFilm calls buf.starwars.relation.v1.RelationService.GetQuoteFilm.
+func (c *relationServiceClient) GetQuoteFilm(ctx context.Context, req *connect_go.Request[v1.GetQuoteFilmRequest]) (*connect_go.Response[v1.GetQuoteFilmResponse], error) {
+	return c.getQuoteFilm.CallUnary(ctx, req)
+}
+
 // RelationServiceHandler is an implementation of the buf.starwars.relation.v1.RelationService
 // service.
 type RelationServiceHandler interface {
 	GetFilmStarships(context.Context, *connect_go.Request[v1.GetFilmStarshipsRequest]) (*connect_go.Response[v1.GetFilmStarshipsResponse], error)
+	GetQuoteFilm(context.Context, *connect_go.Request[v1.GetQuoteFilmRequest]) (*connect_go.Response[v1.GetQuoteFilmResponse], error)
 }
 
 // NewRelationServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -91,6 +108,12 @@ func NewRelationServiceHandler(svc RelationServiceHandler, opts ...connect_go.Ha
 		connect_go.WithIdempotency(connect_go.IdempotencyNoSideEffects),
 		connect_go.WithHandlerOptions(opts...),
 	))
+	mux.Handle(RelationServiceGetQuoteFilmProcedure, connect_go.NewUnaryHandler(
+		RelationServiceGetQuoteFilmProcedure,
+		svc.GetQuoteFilm,
+		connect_go.WithIdempotency(connect_go.IdempotencyNoSideEffects),
+		connect_go.WithHandlerOptions(opts...),
+	))
 	return "/buf.starwars.relation.v1.RelationService/", mux
 }
 
@@ -99,4 +122,8 @@ type UnimplementedRelationServiceHandler struct{}
 
 func (UnimplementedRelationServiceHandler) GetFilmStarships(context.Context, *connect_go.Request[v1.GetFilmStarshipsRequest]) (*connect_go.Response[v1.GetFilmStarshipsResponse], error) {
 	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("buf.starwars.relation.v1.RelationService.GetFilmStarships is not implemented"))
+}
+
+func (UnimplementedRelationServiceHandler) GetQuoteFilm(context.Context, *connect_go.Request[v1.GetQuoteFilmRequest]) (*connect_go.Response[v1.GetQuoteFilmResponse], error) {
+	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("buf.starwars.relation.v1.RelationService.GetQuoteFilm is not implemented"))
 }

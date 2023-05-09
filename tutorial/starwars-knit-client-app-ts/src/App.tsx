@@ -55,6 +55,7 @@ function App(): JSX.Element {
               starships: {
                 $: {},
                 model: {},
+                crew: {},
               }
             }
           },
