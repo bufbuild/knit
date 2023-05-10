@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "buf/starwars/film/v1/film.proto";
 import "buf/starwars/starship/v1/starship.proto";
-import "buf/knit/options.proto";
+import "buf/knit/v1alpha1/options.proto";
 
 package buf.starwars.relation.v1;
 
@@ -19,7 +19,7 @@ message GetFilmStarshipsResponse {
 
 service RelationService {
     rpc GetFilmStarships(GetFilmStarshipsRequest) returns (GetFilmStarshipsResponse) {
-        option (buf.knit.relation).name = "starships";
+        option (buf.knit.v1alpha1.relation).name = "starships";
         option idempotency_level = NO_SIDE_EFFECTS;
     }
 }
