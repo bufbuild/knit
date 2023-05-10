@@ -21,6 +21,7 @@ func RandomQuote() *Quote {
 	return &q
 }
 
+// Quote from Star Wars film.
 type Quote struct {
 	QuoteID  string
 	Text     string
