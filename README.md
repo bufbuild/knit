@@ -281,17 +281,14 @@ The Knit gateway is available as a standalone binary, or it can be embedded
 in a Go service. The [Tutorial] shows how to use both types.
 
 ## Deployment
-An important question in any system using Knit is where to put RPCs, both
-normal service RPCs and the RPCs that define relations.
+Knit can be used with all existing gRPC, gRPC-web and connect protocol service
+without any modifications to those services. The Knit gateway is flexible and
+can be configured to points to any number of services, allowing Knit clients
+to call into them.
 
-**The Knit gateway is flexible and can be configured to points at any number
-of services.**
-
-In particular, the decision of where to put RPCs defining relations will be
-based on which service "owns" the data mapping one type of entity to another.
-Using the Star Wars API in the [Tutorial], the question would be, do `Film`(s)
-know which `Starship`(s) appeared in them, or is it that `Starship`(s) know
-which `Film`(s) they were used in?
+As the need arises more advanced usage of Knit can be employed, such as using
+relations, or splitting the system into finer grain RPCs (independent of the
+services they are defined in).
 
 Below are several examples using the Star Wars API from the Knit [Tutorial]
 to show how parts of the system could be organized:
@@ -371,7 +368,7 @@ B --> F
 B --> S
 ```
 
-#### Everything in one backend monolith
+#### One backend monolith when using the Go embeddable gateway
 ```mermaid
 %%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
