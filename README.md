@@ -7,6 +7,12 @@ declarative queries that shape the response, batching support to eliminate
 the N+1 problem, and first-class support for error handling with partial
 responses. It is built on top of Protobuf and Connect.**
 
+**Use the Knit standalone gateway to call all your existing gRPC services from
+the web with the Knit client via normal HTTP load balancers. No changes to your
+services are needed to use the declarative queries, response shaping, or the
+error handling. Use more advanced feature like relations and partial responses
+as the need arises.**
+
 **Knit is currently in alpha (α), and looking for feedback. Learn how to use it with the [Tutorial].**
 
 ---
@@ -18,6 +24,27 @@ Map of Knit repositories:
 - **[github.com/bufbuild/knit-demo]**: Source for the demo app at https://knit-demo.connect.build/
 
 ## Overview
+```mermaid
+%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
+flowchart LR
+
+subgraph b [Browser]
+  C[Knit Client]
+end
+
+subgraph i [Cloud]
+  G[Knit Gateway]
+  X[Service X]
+  Y[Service Y]
+  Z[Service Z]
+end
+
+C -- http --> G
+G -- gRPC --> X
+G -- gRPC-web --> Y
+G -- connect --> Z
+```
+## Client queries
 Knit clients specify declarative queries that pull data from multiple backend APIs
 in a single call via the Knit gateway. Knit queries can shape the data into a
 hierarchy that matches the needs of the caller, and can filter the response to get
