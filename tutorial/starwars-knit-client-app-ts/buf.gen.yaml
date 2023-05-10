@@ -8,8 +8,7 @@ plugins:
   - plugin: connect-es
     out: gen
     opt: target=ts
-  - plugin: knit-es
-    path: ./node_modules/.bin/protoc-gen-knit-es
-    opt: target=ts
+  - plugin: knit-ts
     out: gen
+    opt: target=ts
     strategy: all

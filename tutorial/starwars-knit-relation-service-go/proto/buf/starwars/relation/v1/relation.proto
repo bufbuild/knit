@@ -11,8 +11,8 @@ message GetFilmStarshipsRequest {
 }
 
 message GetFilmStarshipsResponse {
-    repeated Value values = 1;
-    message Value {
+    repeated Result values = 1;
+    message Result {
         repeated buf.starwars.starship.v1.Starship starships = 1;
     }
 }

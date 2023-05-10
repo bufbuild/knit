@@ -4,5 +4,5 @@ deps:
   - remote: buf.build
     owner: bufbuild
     repository: knit
-    commit: e5dd1e377e18403bafcffbb41a144ba3
-    digest: shake256:31e1ba7980342b69cbc4e96141ba302cc12d337682d86232da03c8ef363a66dd3dbd9b2b108bacdec00548840c9dd5880374b3cb6bc4742a0501f172af1ae5ee
+    commit: 3dc602456973471584684e4878f99b10
+    digest: shake256:5909694f816b2ebb5a502fadcb722a3cb73c217c4e118508c41219009b91d2b2b484fd6b5d9eb5b972f1fe9244ab24783a191d859390f9e6e36ee5a6c2479823

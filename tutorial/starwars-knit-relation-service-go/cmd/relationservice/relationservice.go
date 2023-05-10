@@ -85,7 +85,7 @@ func (s *RelationService) GetFilmStarships(
 			log.Printf("Request to starship service with %v failed: %v", film.StarshipIds, err)
 			return nil, err
 		} else {
-			resp.Values = append(resp.Values, &relationv1.GetFilmStarshipsResponse_Value{
+			resp.Values = append(resp.Values, &relationv1.GetFilmStarshipsResponse_Result{
 				Starships: starships.Msg.Starships,
 			})
 		}
