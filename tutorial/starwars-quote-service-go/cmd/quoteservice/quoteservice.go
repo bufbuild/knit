@@ -56,7 +56,7 @@ func (s *QuoteService) StreamQuotes(
 	stream *connect.ServerStream[quotev1.StreamQuotesResponse],
 ) error {
 	log.Println("Starting streaming response...")
-	for {
+	for i := 0; i < int(req.Msg.Limit); i++ {
 		q := quote.RandomQuote()
 		resp := &quotev1.StreamQuotesResponse{
 			Quote: &quotev1.Quote{
@@ -66,7 +66,7 @@ func (s *QuoteService) StreamQuotes(
 				FilmId:   q.FilmID,
 			},
 		}
-		log.Printf("Sending quote: %v", q.QuoteID)
+		log.Printf("Sending quote: #%v of %v, %v", i+1, req.Msg.Limit, q.Text)
 		err := stream.Send(resp)
 		if errors.Is(err, &net.OpError{}) {
 			log.Printf("Streaming closed by client")
@@ -79,4 +79,5 @@ func (s *QuoteService) StreamQuotes(
 		// Pause a bit so user can read the quote.
 		time.Sleep(3 * time.Second)
 	}
+	return nil
 }

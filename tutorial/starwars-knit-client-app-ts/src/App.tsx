@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 import type { FilmService } from '../gen/buf/starwars/film/v1/film_knit';
 import type { StarshipService } from '../gen/buf/starwars/starship/v1/starship_knit';
-import type { QuoteService } from '../gen/buf/starwars/quote/v1/quote_knit';
+import type { Quote, QuoteService } from '../gen/buf/starwars/quote/v1/quote_knit';
 import type {  } from '../gen/buf/starwars/relation/v1/relation_knit';
-import { createClient } from '@bufbuild/knit';
+import { createClient, Mask, Query } from '@bufbuild/knit';
 
 type Schema = FilmService & StarshipService & QuoteService;
 
@@ -83,58 +83,63 @@ function ListenComponent(): JSX.Element {
   )
 }
 
+const quoteQuery = {
+  text: {},
+  film: {
+    title: {},
+  }
+} satisfies Query<Quote>;
+
+type QueryResult = Mask<typeof quoteQuery, Quote>
+
 function QuoteStreamComponent(): JSX.Element {
-  const [quote, setQuote] = useState(null);
-  const [allowStreaming, setAllowStreaming] = useState(true);
+  const [quote, setQuote] = useState<QueryResult | null>(null);
+  const [allowStreaming, setAllowStreaming] = useState(false);
 
-  async function startStreamQuotes() {
-    const quoteStream = client.listen({
-      "buf.starwars.quote.v1.QuoteService": {
-        streamQuotes: {
-          $: { },
-          quote: {
-            text: {},
-            film: {
-              $: {},
-              title: {},
-            }
+  useEffect(() => {
+    if (!allowStreaming) return;
+    let stopStream = false;
+    const stream = async () => {
+        const quoteStream = client.listen({
+        "buf.starwars.quote.v1.QuoteService": {
+          streamQuotes: {
+            $: { limit: 5n },
+            quote: {              
+              ...quoteQuery,
+            },
           },
-        },
-      },
-    });
-    
-    for await (const resp of quoteStream) {
-      if (!allowStreaming) {
-        setAllowStreaming(true);
-        return;
+        }
+      });
+      for await (const resp of quoteStream) {
+        if (stopStream) {
+          return;
+        }
+        const quote = resp['buf.starwars.quote.v1.QuoteService'].streamQuotes.quote;        
+        setQuote(quote!);
       }
-      const quote = resp['buf.starwars.quote.v1.QuoteService'].streamQuotes.quote;
-      setQuote(quote);
     }
-  }
-
-  function stopStreamQuotes() {
-    setAllowStreaming(false)
-  }
+    stream();
+    return () => { stopStream = true }
+  }, [allowStreaming])
 
   return (
     <div>
       <div>
-        <button onClick={startStreamQuotes}>
+        <button onClick={() => setAllowStreaming(true)}>
           Start quotes
         </button>
-        <button onClick={stopStreamQuotes}>
+        <button onClick={() => setAllowStreaming(false)}>
           Stop quotes
         </button>
       </div>
       <div>
-        <QuoteComponent quote={quote?.text} film={quote?.film.title}/>
+        <QuoteComponent quote={quote?.text} film={quote?.film?.title}/>
       </div>
     </div>
   )
 }
 
-function QuoteComponent({quote, film}: {quote: string, film: string}): JSX.Element {
+function QuoteComponent({quote, film}: {quote: string | undefined, film: string | undefined}): JSX.Element {
   if (quote && film) {
     console.log("Quote and film: ", quote, film);
     return (
@@ -156,9 +161,9 @@ async function streamQuotes() {
   const quoteStream = client.listen({
     "buf.starwars.quote.v1.QuoteService": {
       streamQuotes: {
-        $: { },
+        $: { limit: 5 },
         quote: {
-          quote: {},
+          text: {},
           film: {
             $: {},
             title: {},
@@ -169,7 +174,7 @@ async function streamQuotes() {
   });
 
   for await (const quote of quoteStream) {
-    console.log("Quote: ", quote);
+    console.log(quote.text, quote.film.title);
   }
 }
 `
@@ -177,7 +182,7 @@ async function streamQuotes() {
 const streamingRpcExample = `
 message Quote {
   string quote_id = 1;
-  string quote = 2;
+  string text = 2;
   string person_id = 3;
   string film_id = 4;
 }

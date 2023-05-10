@@ -23,6 +23,7 @@ export interface Quote {
 };
 
 export interface StreamQuotesRequest {
+  limit: bigint;
 };
 
 export interface StreamQuotesResponse {

@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message buf.starwars.quote.v1.Quote
@@ -65,6 +65,11 @@ export class Quote extends Message<Quote> {
  * @generated from message buf.starwars.quote.v1.StreamQuotesRequest
  */
 export class StreamQuotesRequest extends Message<StreamQuotesRequest> {
+  /**
+   * @generated from field: uint64 limit = 1;
+   */
+  limit = protoInt64.zero;
+
   constructor(data?: PartialMessage<StreamQuotesRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -73,6 +78,7 @@ export class StreamQuotesRequest extends Message<StreamQuotesRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.starwars.quote.v1.StreamQuotesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "limit", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StreamQuotesRequest {

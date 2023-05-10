@@ -9,7 +9,9 @@ message Quote {
     string film_id = 4;
 }
 
-message StreamQuotesRequest {}
+message StreamQuotesRequest {
+    uint64 limit = 1;
+}
 
 message StreamQuotesResponse {
     Quote quote = 1;
