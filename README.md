@@ -7,7 +7,7 @@ declarative queries that shape the response, batching support to eliminate
 the N+1 problem, and first-class support for error handling with partial
 responses. It is built on top of Protobuf and Connect.**
 
-**Use the Knit standalone gateway to call all your existing gRPC services from
+**Deply the Knit standalone gateway to call all your existing gRPC services from
 the web with the Knit client via normal HTTP load balancers. No changes to your
 services are needed to use the declarative queries, response shaping, or the
 error handling. Use more advanced feature like relations and partial responses
