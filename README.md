@@ -281,10 +281,10 @@ The Knit gateway is available as a standalone binary, or it can be embedded
 in a Go service. The [Tutorial] shows how to use both types.
 
 ## Deployment
-Knit can be used with all existing gRPC, gRPC-web and connect protocol service
-without any modifications to those services. The Knit gateway is flexible and
-can be configured to points to any number of services, allowing Knit clients
-to call into them.
+Knit can be used with all gRPC, gRPC-web and Connect protocol services
+without any modifications. The Knit gateway 
+can be configured to point to any number of services, allowing Knit clients
+to call all of them.
 
 As the need arises more advanced usage of Knit can be employed, such as using
 relations, or splitting the system into finer grain RPCs (independent of the
