@@ -24,7 +24,7 @@ import { fastify } from "fastify";
 import { fastifyConnectPlugin } from "@bufbuild/connect-fastify";
 
 const starshipClient = createPromiseClient(StarshipService, createConnectTransport({
-    baseUrl: "http://127.0.0.1:18002",
+    baseUrl: "http://127.0.0.1:18002", // URL of starship service
 }));
 
 function routes(router: ConnectRouter) {
