@@ -46,7 +46,7 @@ function routes(router: ConnectRouter) {
 }
 
 async function main() {
-    console.log("Relation service starting");
+    console.log("Knit relation service starting");
 
     const server = fastify();
     await server.register(fastifyConnectPlugin, { routes })

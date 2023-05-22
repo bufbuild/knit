@@ -1,0 +1,49 @@
+# 🧶 Knit Relation Service in TypeScript
+
+[Back to top of Tutorial]
+
+In this tutorial the Knit relation service is implemented using [connect-es],
+and is made to listen on address `http://localhost:18000`. Look at the process
+diagram below to see where the Knit relation service fits into the bigger
+picture. 
+
+```mermaid
+%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
+flowchart LR
+A[Knit Client] --> B[Knit Gateway]
+subgraph r [Knit Relation Service]
+    R{{Relation RPCs}}
+end
+subgraph f [Film Service]
+    F{{Film RPCs}}
+end
+subgraph s [Starship Service]
+    S{{Starship RPCs}}
+end
+B --> R
+B --> F
+B --> S
+style r stroke:#000,stroke-width:3px
+style R stroke:#000,stroke-width:3px
+```
+
+## How to run the code
+To run the Knit relation service clone the repo using `git clone https://github.com/bufbuild/knit.git`,
+then execute the following from the base of the repository (the other services must be running too).
+
+[![Slack](https://img.shields.io/badge/if_you_need_help_talk_to_us_in_slack-buf-%23e01563)][badges_slack]
+```
+cd tutorial/starwars-knit-relation-service-ts
+
+npm install
+npx tsx relationservice.ts
+
+# Output
+Knit relation service starting
+Listening on: 127.0.0.1:18000
+```
+
+[Back to top of Tutorial]: /tutorial
+[github.com/bufbuild/knit]: https://github.com/bufbuild/knit
+[connect-es]: https://github.com/bufbuild/connect-es
+[badges_slack]: https://buf.build/links/slack
