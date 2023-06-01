@@ -312,7 +312,7 @@ B --> F
 B --> S
 ```
 
-#### Relations embedded in Film service
+#### Relations embedded in existing service
 ```mermaid
 %%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
@@ -330,25 +330,7 @@ B --> F
 B --> S
 ```
 
-#### Relations embedded in Starship service
-```mermaid
-%%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
-flowchart LR
-A[Knit Client] --> B[Knit Gateway]
-subgraph f [Film Service]
-    F{{Film RPCs}}
-end
-
-subgraph s [Starship Service]
-    R{{Relation RPCs}}
-    S{{Starship RPCs}}
-end
-B --> R
-B --> F
-B --> S
-```
-
-#### Relations embedded across services
+#### Relations embedded across existing services
 ```mermaid
 %%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
@@ -368,7 +350,7 @@ B --> F
 B --> S
 ```
 
-#### One backend monolith when using the Go embeddable gateway
+#### One backend monolith when using the embeddable gateway in TypeScript or Go
 ```mermaid
 %%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
@@ -388,21 +370,15 @@ G --> S
 Knit has an end-to-end [Tutorial] that use the Star Wars API as a running example, and
 fully working code with longer explanations 
 
-- [Star Wars Knit client app in TypeScript]
-- [Star Wars Knit gateway in Go] [(or Knit standalone gateway)]
-- [Star Wars Knit relation service in Go]
-- [Star Wars film service in Go]
-- [Star Wars starship service in Go]
+* [Star Wars Knit client app in TypeScript](/tutorial/starwars-knit-client-app-ts) 🧑‍💻 🌐
+* [Star Wars Knit gateway](/tutorial/starwars-knit-gateway-standalone) or [(embeddable gateway in Go)](/tutorial/starwars-knit-gateway-go)
+* [Star Wars Knit relation service in TypeScript](/tutorial/starwars-knit-relation-service-ts) or [Go](/tutorial/starwars-knit-relation-service-go)
+* [Star Wars film service in TypeScript](/tutorial/starwars-film-service-ts) or [Go](/tutorial/starwars-film-service-go)
+* [Star Wars starship service in TypeScript](/tutorial/starwars-starship-service-ts) or [Go](/tutorial/starwars-starship-service-go)
 
 [badges_license]: https://github.com/bufbuild/knit/blob/main/LICENSE
 [badges_slack]: https://buf.build/links/slack
 [Tutorial]: /tutorial
-[Star Wars Knit client app in TypeScript]: /tutorial/starwars-knit-client-app-ts
-[Star Wars Knit gateway in Go]: /tutorial/starwars-knit-gateway-go
-[(or Knit standalone gateway)]: /tutorial/starwars-knit-gateway-standalone
-[Star Wars Knit relation service in Go]: /tutorial/starwars-knit-relation-service-go
-[Star Wars film service in Go]: /tutorial/starwars-film-service-go
-[Star Wars starship service in Go]: /tutorial/starwars-starship-service-go
 [github.com/bufbuild/knit]: https://github.com/bufbuild/knit
 [github.com/bufbuild/knit-ts]: https://github.com/bufbuild/knit-ts
 [github.com/bufbuild/knit-go]: https://github.com/bufbuild/knit-go

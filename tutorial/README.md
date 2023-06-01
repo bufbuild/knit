@@ -5,11 +5,11 @@
 The Knit tutorial uses the Star Wars API as a running example
 throughout. It contains the following parts:
 
-* [Star Wars Knit client app in TypeScript] 🧑‍💻 🌐
-* [Star Wars Knit gateway in Go] [(or Knit standalone gateway)]
-* [Star Wars Knit relation service in Go]
-* [Star Wars film service in Go]
-* [Star Wars starship service in Go]
+* [Star Wars Knit client app in TypeScript](/tutorial/starwars-knit-client-app-ts) 🧑‍💻 🌐
+* [Star Wars Knit gateway](/tutorial/starwars-knit-gateway-standalone) or [(embeddable gateway in Go)](/tutorial/starwars-knit-gateway-go)
+* [Star Wars Knit relation service in TypeScript](/tutorial/starwars-knit-relation-service-ts) or [Go](/tutorial/starwars-knit-relation-service-go)
+* [Star Wars film service in TypeScript](/tutorial/starwars-film-service-ts) or [Go](/tutorial/starwars-film-service-go)
+* [Star Wars starship service in TypeScript](/tutorial/starwars-starship-service-ts) or [Go](/tutorial/starwars-starship-service-go)
 
 All parts of the tutorial include full code which can be run from the
 terminal. Give the system a try by cloning this repo with 
@@ -60,13 +60,6 @@ Writing the services and client app from scratch will require the
 `buf` CLI, Node.js and Go, see the install instructions for the
 [buf CLI], [Node.js] and [Go].
 
-[Star Wars Knit client app in TypeScript]: /tutorial/starwars-knit-client-app-ts
-[Knit client app in TypeScript]: /tutorial/starwars-knit-client-app-ts
-[(or Knit standalone gateway)]: /tutorial/starwars-knit-gateway-standalone
-[Star Wars Knit gateway in Go]: /tutorial/starwars-knit-gateway-go
-[Star Wars Knit relation service in Go]: /tutorial/starwars-knit-relation-service-go
-[Star Wars film service in Go]: /tutorial/starwars-film-service-go
-[Star Wars starship service in Go]: /tutorial/starwars-starship-service-go
 [Knit README]: https://github.com/bufbuild/knit/
 [Back to top level README]: https://github.com/bufbuild/knit/
 [knit-ts]: https://github.com/bufbuild/knit-ts/
