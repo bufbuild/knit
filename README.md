@@ -284,7 +284,7 @@ responses into subsequent requests until a query is fully executed.
 
 The Knit gateway is available as a standalone binary, or it can be embedded
 in a TypeScript service or Go service. The [Tutorial] shows how to use both
-types.
+the standalone gateway and the embeddable gateways.
 
 ## Deployment
 Knit can be used with all gRPC, gRPC-web and Connect protocol services
