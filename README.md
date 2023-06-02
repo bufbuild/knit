@@ -160,12 +160,12 @@ const filmsAndPeople = await client.fetch({
 ## Schema first
 Because Knit builds on top of Protocol Buffers, it is schema first. This makes
 the Knit clients strongly typed, improving the developer experience, and gives
-access to all the tooling, like the [buf CLI], that proto schemas have for
-linting, formatting, breaking change detection, and multi-language code
-generation.
+access to all the tooling that proto schemas have for linting, formatting,
+breaking change detection, and multi-language code generation. See the [buf CLI]
+for example.
 
-💡 This also means that Knit client queries are fully typed TS object literals,
-and code generation is required once for schema and not per query.
+This also means that Knit client queries are actual TypeScript object literals,
+and code generation is required only once, not per query.
 
 ## Relations between services
 Relations extend the available fields in a type without needing to modify
