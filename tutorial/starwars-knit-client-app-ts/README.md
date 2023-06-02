@@ -28,7 +28,7 @@ style A stroke:#000,stroke-width:3px
 To run the Knit client app clone the repo using `git clone https://github.com/bufbuild/knit.git`,
 then execute the following from the base of the repository (the other services must be running too).
 
-[![Slack](https://img.shields.io/badge/if_you_need_help_talk_to_us_in_slack-buf-%23e01563)][badges_slack]
+[![Slack](https://img.shields.io/badge/If_you_need_help_talk_to_us_in_Slack-Buf-%23e01563)][badges_slack]
 ```
 cd tutorial/starwars-knit-client-app-ts/
 
