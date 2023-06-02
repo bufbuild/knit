@@ -226,7 +226,10 @@ A query that references more than one service, but without a relation
 between them, calls through the Knit gateway, and then the Knit
 gateway in parallel calls out to the appropriate RPC in the respective
 services. In this case the `getFilms` RPC in the `FilmService` and
-the `getStarships` RPC in the `StarshipService`:
+the `getStarships` RPC in the `StarshipService`. The Knit gateway gathers
+the responses from the multiple calls, and returns a single bundled
+response to the Knit client:
+
 ```TypeScript
 client.do({
   "buf.starwars.film.v1.FilmService": {
@@ -265,8 +268,8 @@ end
 ### Query with relation RPC
 A relation defines a relationship between entities that exist in
 independent APIs, like `Film` in the `FilmService` and `Starship`
-in the `StarshipService`. See how they are defined in the
-[Star Wars Knit relation service in Go] section of the [Tutorial].
+in the `StarshipService`. See how relations are defined in the
+[Top level README].
 
 A knit client always uses the normal RPCs defined in the base services, it
 never needs call the RPCs defined by relations, those are used by the Knit
@@ -275,6 +278,7 @@ gateway.
 No matter how complex or deep the hierarchy of the query and the
 relations within, the Knit gateway can always figure out the call
 graph and execute it:
+
 ```TypeScript
 client.do({
   "buf.starwars.film.v1.FilmService": {
@@ -322,6 +326,7 @@ the Knit clients from these details.
 Below is the call graph of the same query to get films and their starships,
 but with the relation RPC linking films to starships moved into the
 `FilmService`:
+
 ```TypeScript
 client.do({
   "buf.starwars.film.v1.FilmService": {
@@ -363,6 +368,7 @@ end
 [Back to top of Tutorial]: /tutorial
 [Star Wars Knit relation service in Go]: /tutorial/starwars-knit-relation-service-go
 [knit-ts]: https://github.com/bufbuild/knit-ts
+[Top level README]: https://github.com/bufbuild/knit/tree/add-film-service-ts#relations-between-services
 [react.js]: https://react.dev/
 [vite]: https://vitejs.dev/
 [badges_slack]: https://buf.build/links/slack
