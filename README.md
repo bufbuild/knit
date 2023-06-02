@@ -88,7 +88,7 @@ const filmsResult = await client.do({
           //
           // It can also be nested as deep as needed
           // and accept parameters.
-          $: { limit: 10 }
+          $: { limit: 10 },
           id: {},
           name: {},
         },
@@ -205,12 +205,12 @@ service RelationService {
     }
 }
 
-// Requests always need to accept a batch of inputs
+// Relation requests always need to accept a batch of inputs
 message StarshipsForFilmRequest {
     repeated Film bases = 1;
 }
 
-// Responses return a corresponding batch of outputs
+// Relation responses always return a corresponding batch of outputs
 message StarshipsForFilmResponse {
     repeated Result values = 1;
     message Result {
