@@ -228,7 +228,7 @@ however in the [Tutorial] they have been put into their own `RelationService` so
 it is clear this is possible.
 
 Once a relation RPC is defined a Knit client can call the RPCs of the base service,
-in the [Tutotial] that would be the `FilmService` or the `StarshipService`, and use
+in the [Tutorial] that would be the `FilmService` or the `StarshipService`, and use
 the new field defined in the relation as if it was defined in the base type itself:
 
 ```TypeScript
@@ -288,9 +288,9 @@ types.
 
 ## Deployment
 Knit can be used with all gRPC, gRPC-web and Connect protocol services
-without any modifications. The Knit gateway 
-can be configured to point to any number of services, allowing Knit clients
-to call all of them.
+without any modifications. The Knit gateway  can be configured to point
+to any number of services, allowing Knit clients to call all of them out
+of the box.
 
 As the need arises more advanced usage of Knit can be employed, such as using
 relations, or splitting the system into finer grain RPCs (independent of the
