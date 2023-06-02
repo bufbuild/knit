@@ -43,6 +43,11 @@ Knit relation service starting
 Listening on: 127.0.0.1:18000
 ```
 
+## Relations between services
+An explanation of how relations between services and their entities are
+defined is available in the [Top level Knit README].
+
+[Top level Knit README]: https://github.com/bufbuild/knit#relations-between-services
 [Back to top of Tutorial]: /tutorial
 [github.com/bufbuild/knit]: https://github.com/bufbuild/knit
 [connect-es]: https://github.com/bufbuild/connect-es

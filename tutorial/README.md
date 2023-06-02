@@ -47,10 +47,11 @@ of required data from responses into subsequent requests until a query
 is fully executed.
 
 The Film service and Starship service are just normal gRPC services.
-In this tutorial they are built using [connect-go], there is nothing
-Knit specific about them, however they are needed for the tutorial.
+In this tutorial they are built using [connect-es] and [connect-go], 
+there is nothing Knit specific about them, however they are needed
+for the tutorial.
 
-The Knit Relation service extends the `Film` of `FilmService` with a
+The Knit `RelationService` extends the `Film` of `FilmService` with a
 new field called `starships`, without needing to modify `Film` or
 `FilmService`, and shows how such relations can be added to a system
 using Knit.

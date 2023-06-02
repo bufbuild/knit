@@ -169,17 +169,18 @@ and code generation is required once for schema and not per query.
 
 ## Relations between services
 Relations extend the available fields in a type without needing to modify
-the original proto definition of that type.
+the original proto definition of that type. Relations between entities in
+independent APIs are created by defining an RPC, and adding the
+`buf.knit.relation` option to the RPC definition.
 
 Using the `Film` and `Starship` types from the [Tutorial] as an example, a
 relationship can be made by defining a Knit RPC that extends `Film` with a
-`starships` field usable by the Knit client. The difference between just
-adding a new field to the base type and using a Knit relation, is that with
-a relation, these new fields can be added after-the-fact and without updating
-the base types:
+`starships` field usable by the Knit client. One side of the relationship
+is defined in the request message of the RPC defining the relation, the
+other side is defined in the response message:
 
 ```protobuf
-// film.proto
+// Defined in file film.proto
 message Film {
     string film_id = 1;
     string title = 2;
@@ -188,7 +189,7 @@ message Film {
 ```
 
 ```protobuf
-// starship.proto
+// Defined in file starship.proto
 message Starship {
     string starship_id = 1;
     string name = 2;
@@ -196,20 +197,21 @@ message Starship {
 }
 ```
 
-
 ```protobuf
-// relation.proto
+// Defined in file relation.proto
 service RelationService {
-    rpc GetFilmStarships(GetFilmStarshipsRequest) returns (GetFilmStarshipsResponse) {
+    rpc GetStarshipsForFilm(StarshipsForFilmRequest) returns (StarshipsForFilmResponse) {
         option (buf.knit.relation).name = "starships";
     }
 }
 
-message GetFilmStarshipsRequest {
+// Requests always need to accept a batch of inputs
+message StarshipsForFilmRequest {
     repeated Film bases = 1;
 }
 
-message GetFilmStarshipsResponse {
+// Responses return a corresponding batch of outputs
+message StarshipsForFilmResponse {
     repeated Result values = 1;
     message Result {
         repeated Starship starships = 1;
@@ -217,30 +219,32 @@ message GetFilmStarshipsResponse {
 }
 ```
 
-Knit RPCs that define relations can be put into existing services or
-new relation specific services in the same or different package,
-either way works.
+The difference between just adding a new field to the base type and using a
+Knit relation, is that with a relation, these new fields can be added
+after-the-fact and without updating the base types.
 
-The request message must have a field `1` called `bases`, and the
-response message must have a field `1` called `values`. The request
-must always take repeated values of the base type. The response must
-always return repeated values of the related result type.
+The RPCs that define relationships do not need to be put into their own service,
+however in the [Tutorial] they have been put into their own `RelationService` so that
+it is clear this is possible.
 
-The new fields defined in the relation RPCs are visible to Knit clients
-(and only Knit clients), and added by the response processing of the Knit
-Gateway.
+Once a relation RPC is defined a Knit client can call the RPCs of the base service,
+in the [Tutotial] that would be the `FilmService` or the `StarshipService`, and use
+the new field defined in the relation as if it was defined in the base type itself:
 
 ```TypeScript
-const filmStarships = await client.fetch({
+const resp = await client.do({
   "buf.starwars.film.v1.FilmService": {
     getFilms: {
-      $: { ids: ["1"] },
+      $: { filmIds: ["1","2"] },
       films: {
         title: {},
-        starships: { // New field added by relation
-            $: {},
-            name: {},
-            model: {},
+        // The "starships" field does not exist
+        // on Film, but because of the relation
+        // RPC it is available to use by Knit
+        // clients as if it was defined on Film.
+        starships: {
+          $: {},
+          model: {},
         },
       },
     },
@@ -269,7 +273,8 @@ and require no special Knit tooling. That means all existing such
 services work with Knit out of the box.
 
 Services are defined in any languge that has support for gRPC, gRPC-web or
-the Connect protocol. The [Tutorial] uses [connect-go] in its examples.
+the Connect protocol. The [Tutorial] uses [connect-es] and [connect-go] in
+its examples.
 
 ### Gateways
 The Knit gateway knows how to execute Knit queries from Knit clients, which
@@ -278,7 +283,8 @@ knows how to issue them in the correct order, and flow required data from
 responses into subsequent requests until a query is fully executed.
 
 The Knit gateway is available as a standalone binary, or it can be embedded
-in a Go service. The [Tutorial] shows how to use both types.
+in a TypeScript service or Go service. The [Tutorial] shows how to use both
+types.
 
 ## Deployment
 Knit can be used with all gRPC, gRPC-web and Connect protocol services
@@ -312,7 +318,7 @@ B --> F
 B --> S
 ```
 
-#### Relations embedded in existing service
+#### Relations embedded in an existing service
 ```mermaid
 %%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 flowchart LR
@@ -368,7 +374,7 @@ G --> S
 
 ## Learning to use Knit
 Knit has an end-to-end [Tutorial] that use the Star Wars API as a running example, and
-fully working code with longer explanations 
+fully working code with longer explanations:
 
 * [Star Wars Knit client app in TypeScript](/tutorial/starwars-knit-client-app-ts) 🧑‍💻 🌐
 * [Star Wars Knit gateway](/tutorial/starwars-knit-gateway-standalone) or [(embeddable gateway in Go)](/tutorial/starwars-knit-gateway-go)
