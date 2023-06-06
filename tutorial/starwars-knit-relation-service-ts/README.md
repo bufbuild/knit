@@ -1,8 +1,8 @@
-# 🧶 Knit Relation Service in Go
+# 🧶 Knit Relation Service in TypeScript
 
 [Back to top of Tutorial]
 
-In this tutorial the Knit relation service is implemented using [connect-go],
+In this tutorial the Knit relation service is implemented using [connect-es],
 and is made to listen on address `http://localhost:18000`. Look at the process
 diagram below to see where the Knit relation service fits into the bigger
 picture. 
@@ -33,15 +33,14 @@ then execute the following from the base of the repository (the other services m
 
 [![Slack](https://img.shields.io/badge/If_you_need_help_talk_to_us_in_Slack-Buf-%23e01563)][badges_slack]
 ```
-cd tutorial/starwars-knit-relation-service-go/cmd/relationservice
+cd tutorial/starwars-knit-relation-service-ts
 
-go mod tidy
-go run starshipservice.go
+npm install
+npx tsx relationservice.ts
 
 # Output
-2023/05/01 11:32:40 Knit relation service starting
-2023/05/01 11:32:40 Handling connect service at prefix: /buf.starwars.relation.v1.RelationService/
-2023/05/01 11:32:40 Listening on: 127.0.0.1:18000
+Knit relation service starting
+Listening on: 127.0.0.1:18000
 ```
 
 ## Relations between services
@@ -51,5 +50,5 @@ defined is available in the [Top level Knit README].
 [Top level Knit README]: https://github.com/bufbuild/knit#relations-between-services
 [Back to top of Tutorial]: /tutorial
 [github.com/bufbuild/knit]: https://github.com/bufbuild/knit
-[connect-go]: https://github.com/bufbuild/connect-go
+[connect-es]: https://github.com/bufbuild/connect-es
 [badges_slack]: https://buf.build/links/slack

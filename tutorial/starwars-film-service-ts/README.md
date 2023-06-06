@@ -1,9 +1,9 @@
-# Star Wars Film Service in Go
+# Star Wars Film Service in TypeScript
 
 [Back to top of Tutorial]
 
 The film service is not strictly 🧶 Knit, it's just a simple gRPC service
-written using [connect-go], but it's needed for the other parts of the
+written using [connect-es], but it's needed for the other parts of the
 tutorial. Feel free to just run this service and go on to the Knit
 specific parts. The film service is made to listen on address
 `http://localhost:18001`. Look at the process diagram below
@@ -36,15 +36,14 @@ then execute the following from the base of the repository (the other services m
 
 [![Slack](https://img.shields.io/badge/If_you_need_help_talk_to_us_in_Slack-Buf-%23e01563)][badges_slack]
 ```
-cd tutorial/starwars-film-service-go/cmd/filmservice/
+cd tutorial/starwars-film-service-ts/
 
-go mod tidy
-go run filmservice.go
+npm install
+npx tsx fileservice.ts
 
 # Output
-2023/05/01 11:33:03 Film service starting
-2023/05/01 11:33:03 Handling connect service at prefix: /buf.starwars.film.v1.FilmService/
-2023/05/01 11:33:03 Listening on: 127.0.0.1:18001
+Film service starting
+Listening on: 127.0.0.1:18001
 ```
 
 Open another terminal, and at the base directory do:
@@ -53,10 +52,10 @@ buf curl \
 "http://localhost:18001/buf.starwars.film.v1.FilmService/GetFilms" \
 --data '{"filmIds":["1"]}' \
 --http2-prior-knowledge \
---schema tutorial/starwars-film-service-go/proto/buf/starwars/film/v1/film.proto
+--schema tutorial/starwars-film-service-ts/proto/buf/starwars/film/v1/film.proto
 ```
 
 [Back to top of Tutorial]: /tutorial
 [github.com/bufbuild/knit]: https://github.com/bufbuild/knit
-[connect-go]: https://github.com/bufbuild/connect-go
+[connect-es]: https://github.com/bufbuild/connect-es
 [badges_slack]: https://buf.build/links/slack

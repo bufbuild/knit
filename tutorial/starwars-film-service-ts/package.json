@@ -1,0 +1,23 @@
+{
+  "name": "starwars-film-service-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@bufbuild/buf": "^1.18.0-1",
+    "@bufbuild/connect": "^0.8.6",
+    "@bufbuild/connect-fastify": "^0.8.6",
+    "@bufbuild/protobuf": "^1.2.0",
+    "@bufbuild/protoc-gen-connect-es": "^0.8.6",
+    "@bufbuild/protoc-gen-es": "^1.2.0",
+    "fastify": "^4.17.0",
+    "tsx": "^3.12.7",
+    "typescript": "^5.0.4"
+  }
+}

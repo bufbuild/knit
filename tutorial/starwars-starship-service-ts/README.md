@@ -1,9 +1,9 @@
-# Star Wars Starship Service in Go
+# Star Wars Starship Service in TypeScript
 
 [Back to top of Tutorial]
 
 The starship service is not strictly 🧶 Knit, it's just a simple gRPC service
-written using [connect-go], but it's needed for the other parts of the
+written using [connect-es], but it's needed for the other parts of the
 tutorial. Feel free to just run this service and go on to the Knit
 specific parts. The starship service is made to listen on address
 `http://localhost:18002`. Look at the process diagram below
@@ -36,15 +36,14 @@ then execute the following from the base of the repository (the other services m
 
 [![Slack](https://img.shields.io/badge/If_you_need_help_talk_to_us_in_Slack-Buf-%23e01563)][badges_slack]
 ```
-cd tutorial/starwars-starship-service-go/cmd/starshipservice
+cd tutorial/starwars-starship-service-ts
 
-go mod tidy
-go run starshipservice.go
+npm install
+npx tsx starshipservice.ts
 
 # Output
-2023/05/01 11:32:57 Starship service starting
-2023/05/01 11:32:57 Handling connect service at prefix: /buf.starwars.starship.v1.StarshipService/
-2023/05/01 11:32:57 Listening on: 127.0.0.1:18002
+Starship service starting
+Listening on: 127.0.0.1:18002
 ```
 
 Open another terminal, and at the base directory do:
@@ -58,5 +57,5 @@ buf curl \
 
 [Back to top of Tutorial]: /tutorial
 [github.com/bufbuild/knit]: https://github.com/bufbuild/knit
-[connect-go]: https://github.com/bufbuild/connect-go
+[connect-es]: https://github.com/bufbuild/connect-es
 [badges_slack]: https://buf.build/links/slack
