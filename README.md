@@ -389,7 +389,7 @@ fully working code with longer explanations:
 [github.com/bufbuild/knit-ts]: https://github.com/bufbuild/knit-ts
 [github.com/bufbuild/knit-go]: https://github.com/bufbuild/knit-go
 [github.com/bufbuild/knit-demo]: https://github.com/bufbuild/knit-demo
-[github.com/bufbuild/knit-proto]: https://github.com/bufbuild/knit-api
+[github.com/bufbuild/knit-proto]: https://github.com/bufbuild/knit-proto
 [github.com/bufbuild/connect-es]: https://github.com/bufbuild/connect-es
 [github.com/bufbuild/connect-go]: https://github.com/bufbuild/connect-go
 [connect-es]: https://github.com/bufbuild/connect-es
