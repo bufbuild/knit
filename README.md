@@ -20,7 +20,7 @@ Map of Knit repositories:
 - **[github.com/bufbuild/knit]**: You are here 🚀
 - **[github.com/bufbuild/knit-ts]**: Knit client and embeddable gateway in TypeScript
 - **[github.com/bufbuild/knit-go]**: Knit standalone gateway and embeddable gateway in Go
-- **[github.com/bufbuild/knit-api]**: Protobuf custom options and gateway protocol definition
+- **[github.com/bufbuild/knit-proto]**: Protobuf custom options and gateway protocol definition
 - **[github.com/bufbuild/knit-demo]**: Source for the demo app at https://knit-demo.connect.build/
 
 ## Overview
