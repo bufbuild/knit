@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createPromiseClient, ConnectRouter } from "@bufbuild/connect";
-import { createConnectTransport } from "@bufbuild/connect-web";
+import { createPromiseClient, ConnectRouter } from "@connectrpc/connect";
+import { createConnectTransport } from "@connectrpc/connect-web";
 import { StarshipService } from "./gen/buf/starwars/starship/v1/starship_connect";
 import { StarshipsRequest } from "./gen/buf/starwars/starship/v1/starship_pb";
 import { RelationService } from "./gen/buf/starwars/relation/v1/relation_connect";
@@ -21,7 +21,7 @@ import { GetFilmStarshipsRequest, GetFilmStarshipsResponse, GetFilmStarshipsResp
 
 
 import { fastify } from "fastify";
-import { fastifyConnectPlugin } from "@bufbuild/connect-fastify";
+import { fastifyConnectPlugin } from "@connectrpc/connect-fastify";
 
 const starshipClient = createPromiseClient(StarshipService, createConnectTransport({
     baseUrl: "http://127.0.0.1:18002", // URL of starship service
