@@ -57,10 +57,10 @@ Install the dependencies needed for a Knit application:
 ```
 npm install \
     @bufbuild/buf \
-    @bufbuild/connect \
     @bufbuild/protobuf \
-    @bufbuild/protoc-gen-connect-es \
     @bufbuild/protoc-gen-es \
+    @connectrpc/connect \
+    @connectrpc/protoc-gen-connect-es \
     @bufbuild/knit
 ```
 
@@ -146,7 +146,7 @@ function App(): JSX.Element {
 
     const films = resp['buf.starwars.film.v1.FilmService'].getFilms.films.map(film => {
       return {
-        title: film.title, 
+        title: film.title,
         models: film.starships.map(ship => ship.model),
       }
     });
@@ -338,7 +338,7 @@ client.do({
         // that defines a relation between film
         // and starship entities - in the Film
         // Service and Starship Service.
-        starships: { 
+        starships: {
           $: {},
           model: {},
         },

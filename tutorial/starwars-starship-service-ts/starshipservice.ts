@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { ConnectRouter } from "@bufbuild/connect";
+import { ConnectRouter } from "@connectrpc/connect";
 import { StarshipService } from "./gen/buf/starwars/starship/v1/starship_connect";
 import { Starship, StarshipsRequest, StarshipsResponse } from "./gen/buf/starwars/starship/v1/starship_pb";
 import { findStarship } from "../starwars-data-ts/starship/starship";
 
 import { fastify } from "fastify";
-import { fastifyConnectPlugin } from "@bufbuild/connect-fastify";
+import { fastifyConnectPlugin } from "@connectrpc/connect-fastify";
 
 function routes(router: ConnectRouter) {
     router.service(StarshipService, {
