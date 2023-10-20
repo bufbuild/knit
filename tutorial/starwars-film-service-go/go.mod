@@ -8,8 +8,8 @@ require (
 	github.com/bufbuild/connect-go v1.0.0
 	github.com/bufbuild/connect-grpcreflect-go v1.0.0
 	github.com/bufbuild/knit/tutorial/starwars-data-go v0.0.0-20230505135109-8bf7f257e49d
-	golang.org/x/net v0.9.0
+	golang.org/x/net v0.17.0
 	google.golang.org/protobuf v1.28.1
 )
 
-require golang.org/x/text v0.9.0 // indirect
+require golang.org/x/text v0.13.0 // indirect
