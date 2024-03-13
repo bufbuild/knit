@@ -7,7 +7,7 @@ require (
 	github.com/bufbuild/connect-go v1.7.0
 	github.com/bufbuild/connect-grpcreflect-go v1.0.1-0.20230317120624-8e24e9604364
 	golang.org/x/net v0.9.0
-	google.golang.org/protobuf v1.30.0
+	google.golang.org/protobuf v1.33.0
 )
 
 require golang.org/x/text v0.9.0 // indirect
