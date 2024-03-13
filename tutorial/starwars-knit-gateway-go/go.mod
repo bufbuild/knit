@@ -8,7 +8,7 @@ require (
 	github.com/bufbuild/connect-grpcreflect-go v1.0.1-0.20230317120624-8e24e9604364
 	github.com/bufbuild/knit-go v0.0.1
 	golang.org/x/net v0.9.0
-	google.golang.org/protobuf v1.30.0
+	google.golang.org/protobuf v1.33.0
 )
 
 require (
