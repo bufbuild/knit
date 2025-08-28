@@ -16,7 +16,7 @@
     "@connectrpc/connect": "^0.13.1",
     "@connectrpc/connect-fastify": "^0.13.1",
     "@connectrpc/protoc-gen-connect-es": "^0.13.1",
-    "fastify": "^4.29.0",
+    "fastify": "^4.29.1",
     "tsx": "^3.12.7",
     "typescript": "^5.0.4"
   }
